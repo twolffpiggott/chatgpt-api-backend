@@ -1,5 +1,7 @@
 # ChatGPT API Backend
 
+[![Tests](https://github.com/twolffpiggott/chatgpt-api-backend/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/twolffpiggott/chatgpt-api-backend/actions/workflows/test.yml)
+
 Backend for OpenAI/ChatGPT chats with database storage and API.
 
 ```mermaid

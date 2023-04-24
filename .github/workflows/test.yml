@@ -1,0 +1,29 @@
+name: Tests
+
+on: [push]
+
+env:
+  COLUMNS: 120
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install dependencies
+        run: pip install '.[test]'
+      - name: Test with pytest
+        env:
+          DATABASE_URL: "sqlite:///./test.db"
+        run: pytest chatgpt_api_backend
